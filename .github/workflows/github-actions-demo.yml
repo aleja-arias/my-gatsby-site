@@ -8,9 +8,8 @@ on:
 permissions: write-all
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       # Checkout the repository
@@ -21,7 +20,29 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Use the version compatible with your app
+          node-version: 18
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run tests
+      - name: Run tests
+        run: npm test # Replace with the appropriate test command
+
+  build:
+    needs: test # Runs only after the 'test' job is successful
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       # Install dependencies
       - name: Install dependencies
@@ -30,6 +51,14 @@ jobs:
       # Build the Gatsby app
       - name: Build Gatsby
         run: npm run build
+
+  deploy:
+    needs: build # Runs only after the 'build' job is successful
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
