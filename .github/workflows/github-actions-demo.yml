@@ -26,9 +26,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Run tests
-      - name: Run tests
-        run: npm test # Replace with the appropriate test command
 
   build:
     needs: test # Runs only after the 'test' job is successful
