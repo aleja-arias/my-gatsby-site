@@ -1,14 +1,34 @@
-name: Test, Build and Deploy
-run-name: ${{ github.actor }} is working on a multistage pipeline 🚀
+name: Test, Build and Deploy - DevOps training
+run-name: ${{ github.actor }} is running a secure CI/CD pipeline 🚀
 on:
   push:
     branches:
-      - main # Replace 'main' with your default branch name if different
+      - main
 
-permissions: write-all
+permissions:
+  contents: read
+  security-events: write
 
 jobs:
   test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Initialize CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: 'javascript'
+
+      # Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository
@@ -25,44 +45,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Run tests
-      # - name: Run tests
-      #   run: npm test # Replace with your actual test command
-
-      # Save dependencies as an artifact for reuse
-      - name: Upload node_modules as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: node_modules
-          path: node_modules/
-
-  build:
-    needs: test # Runs only after the 'test' job is successful
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Download node_modules artifact
-      - name: Download node_modules artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: node_modules
-
-      # Build the Gatsby app
-      - name: Build Gatsby
+      # Build the application
+      - name: Build the app
         run: npm run build
 
       # Save the build output as an artifact
       - name: Upload build output
         uses: actions/upload-artifact@v3
         with:
-          name: gatsby-build
+          name: app-build
           path: public/
-
   deploy:
-    needs: build # Runs only after the 'build' job is successful
+    needs: build
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository
@@ -70,10 +64,10 @@ jobs:
         uses: actions/checkout@v3
 
       # Download the build artifact
-      - name: Download Gatsby build artifact
+      - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
-          name: gatsby-build
+          name: app-build
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -81,5 +75,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-      
-      - run: echo "🍏 The deploy status is ${{ job.status }}."
