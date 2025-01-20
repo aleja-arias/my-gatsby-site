@@ -16,13 +16,6 @@ const headingAccentStyles = {
 const paragraphStyles = {
   marginBottom: 48,
 }
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
 const listStyles = {
   marginBottom: 96,
   paddingLeft: 0,
@@ -127,13 +120,13 @@ const IndexPage = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
-        Congratulations
+        I am Aleja!
         <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
+        <span style={headingAccentStyles}>— Currently learning DevOps 🎉🎉🎉</span>
       </h1>
       <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time. 😎
+        This time I will deploy a Gatsby App in GitHub Pages 😎
+        It is free to host and that's simply great!
       </p>
       <ul style={listStyles}>
         <li style={docLinkStyle}>
