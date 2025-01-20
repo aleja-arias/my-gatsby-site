@@ -120,7 +120,7 @@ const IndexPage = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
-        I am Aleja again Yeeees!
+        I am Aleja again Yeeees with different stages!
         <br />
         <span style={headingAccentStyles}>— Currently learning DevOps 🎉🎉🎉</span>
       </h1>
