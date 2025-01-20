@@ -1,5 +1,5 @@
 name: Test, Build and Deploy
-run-name: ${{ github.actor }} is testing out GitHub Actions now :) 🚀
+run-name: ${{ github.actor }} is working on a multistage pipeline 🚀
 on:
   push:
     branches:
@@ -11,7 +11,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
@@ -26,6 +25,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Run tests
+      # - name: Run tests
+      #   run: npm test # Replace with your actual test command
+
+      # Save dependencies as an artifact for reuse
+      - name: Upload node_modules as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: node_modules
+          path: node_modules/
 
   build:
     needs: test # Runs only after the 'test' job is successful
@@ -35,24 +44,42 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Setup Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      # Download node_modules artifact
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
         with:
-          node-version: 18
-
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
+          name: node_modules
 
       # Build the Gatsby app
       - name: Build Gatsby
         run: npm run build
 
+      # Save the build output as an artifact
+      - name: Upload build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: gatsby-build
+          path: public/
+
+  deploy:
+    needs: build # Runs only after the 'build' job is successful
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Download the build artifact
+      - name: Download Gatsby build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: gatsby-build
+
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      
+       - run: echo "🍏 The deploy status is ${{ job.status }}."
