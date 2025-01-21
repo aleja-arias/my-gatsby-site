@@ -47,10 +47,6 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      # Ensure public directory is generated
-      - name: List contents of public directory
-        run: ls -alh ./public
-
       # Save the build output as an artifact (no need to include public/ in Git)
       - name: Upload build output
         uses: actions/upload-artifact@v3
@@ -66,23 +62,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Log current working directory
-        run: pwd
-
-      # Verify the downloaded build output
-      - name: Verify before download
-        run: ls
-
       # Download the build artifact
       - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
           name: app-build
-          path: ./public
-
-      # Verify the downloaded build output
-      - name: Verify if it is downloaded
-        run: ls
+          path: ./public # Specify that the download is saved in this folder
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
