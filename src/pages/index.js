@@ -125,8 +125,8 @@ const IndexPage = () => {
         <span style={headingAccentStyles}>— Currently learning DevOps 🎉🎉🎉</span>
       </h1>
       <img
-        alt="YouAndI"
-        src="../images/youandi.jpg" 
+        alt="uandi"
+        src="../images/uandi.jpg" 
         style={{ width: '100%', height: 'auto', marginTop: '20px' }}
       />
       <p style={{ textAlign: 'center', fontSize: '1.5rem', marginTop: '20px' }}>
