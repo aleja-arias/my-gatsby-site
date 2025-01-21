@@ -4,43 +4,50 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby Minimal Starter
+  Gatsby Project and GitHub Pages
 </h1>
 
-## 🚀 Quick start
+## 🚀 See it now!
 
-1.  **Create a Gatsby site.**
+You can see the live site here: https://aleja-arias.github.io/my-gatsby-site/
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+## What is this about?
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+This is a very simple project but that contributed a lot to my learning process.
 
-2.  **Start developing.**
+The site shows an image and a title.
 
-    Navigate into your new site’s directory and start it up.
+Even if it is simple, the process that is carried on once a commit is done, is almost like magic.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+The GitHub Actions Workflow tests the code, builds and deploys the project so I can now share the link and people can see it from everywhere and the hosting is free!
 
-3.  **Open the code and start customizing!**
 
-    Your site is now running at http://localhost:8000!
+## Do you want to use this and learn more?
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+The best way to learn is by doing.
 
-4.  **Learn more**
+Clone the project and then run this:
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+```
+npm install
+```
+
+And then:
+
+```
+npm run develop
+```
+
+Modify things and have fun!
+
+##  **Learn more here:**
+
+  - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+  - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+  - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+  - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+  - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+  - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
 ## 🚀 Quick start (Netlify)
 
